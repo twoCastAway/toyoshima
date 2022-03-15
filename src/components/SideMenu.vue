@@ -1,20 +1,21 @@
 <template>
     <div id="SideMenu">
         <ul>
-            <li v-for="(li, id) in sideMenuList" :key="id" @click="Click">{{ li }}</li>
-            <!-- <li>手続き・届出</li>
-            <li>暮らし・地域</li>
-            <li>健康・福祉</li>
-            <li>子育て・教育・若者</li>
-            <li>文化・観光・スポーツ</li>
-            <li>まちづくり・環境・産業</li>
-            <li>区政情報</li> -->
+            <li v-for="(li, id) in sideMenuList" :key="id" v-on:mouseover="subMOpen">{{ li }}</li>
         </ul>
+    <p :v-html="subMenuListTemplate" id="X"></p>
     </div>
 </template>
 <style scoped>
 #SideMenu > ul > li {
     list-style-type: none;
+}
+#SideMenu {
+    display: flex;
+}
+#X {
+    width: 200px;
+    height: 200px;
 }
 </style>
 <script>
@@ -33,23 +34,30 @@ export default {
                     '区政情報',
             ],
             subMenuList: [
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {}
-            ]
+                [ '防災・災害対策','火事・救急・AEDマップ','治安・防犯','みんなでつくるセーフコミュニティとしま' ],
+                [ '届出・証明','年金・保険','税','マイナンバー 社会保障・税番号制度', '電子申請手続一覧'],
+                [ 'ごみ・リサイクル','暮らしの衛生','消費生活','協働','区民ひろば','区民活動・サークル','NPO（特定非営利活動法人）・ボランティア' ],
+                [ '健康・医療','高齢者福祉','障害者福祉','介護','生活福祉','総合高齢社会対策' ],
+                [ '保育','妊娠・出産','子育て','としまの教育','子ども・若者','としま子ども若者応援プロジェクト' ],
+                [ '文化','観光','スポーツ','生涯学習','オリンピック・パラリンピック','マンガ・アニメ' ],
+                [ '住まい・生活環境','自然・エネルギー','土地・開発','都市計画・まちづくり','道路','交通','就職・労働','産業' ],
+                [ '区の概要','重点プロジェクト','公民連携','施策・計画・予算・財政・行政評価','ようこそ区長室へ','区議会','組織と仕事','区政へのご意見','行政情報公開・個人情報保護・公文書','審議会・委員会','人権・平和','男女共同参画','広報','例規','刊行物・区政情報','デジタル化推進','選挙','監査','施設案内','入札・契約','人事・職員採用（正規職員）','よくある質問' ],
+            ],
+            subMenu: false,
+            subMenuListTemplate: ``,
         }        
     },
     methods: {
-        // Click: function(){
-        //     //click→hover
-        //     //サブメニューリストを表示
-        //     //debounce
-        // }
+        subMOpen: function(e){
+            // console.log(this.subMenuList[e.path[0].__vnode.key]);
+            const subMenuList = this.subMenuList[e.path[0].__vnode.key];
+            console.log(subMenuList);
+            this.subMenuListTemplate = `<ul><li v-for="(li, id) in ${subMenuList}" :key="id">{{ li }}</li></ul>`;
+            // return {
+            //     isOpen: true,
+            //     template: `<ul><li v-for="(li, id) in ${subMenuList}" :key="id">{{ li }}</li></ul>`
+            // }
+        }
     }
 }
 </script>
