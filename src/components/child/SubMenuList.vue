@@ -2,19 +2,12 @@
 export default {
     name: 'SubMenuList',
     props: {
-        // subMenuID: {
-        //     type: Number,
-        //     default: null,
-        //     validator: function(value){
-        //         if(value < 8){
-        //             return
-        //         } else{
-        //             console.log('error')
-        //         }
-        //     },
-        //     requried: true
-        // }
-    },
+        id: { type: Number },   
+        isOpen: {
+            type: Boolean,
+            default: false
+        }
+    },    
     data(){
         return {
             subMenuList: [
@@ -29,17 +22,12 @@ export default {
             ],
         }
     },
-    methods: {
-        openSubM: function(e){
-            this.subMenuID = e.path[0].__vnode.key
-        }
-    }
 }
 </script>
 <template>
-    <div id="SubMenuList">{{ subMenuID }}
-        <!-- <ul>
-            <li :v-for="(item, index) in subMenuList" :key="index"></li>
-        </ul> -->
+    <div id="SubMenuList">
+        <ul>
+            <li v-for="(li, id) in subMenuList[id]" :key="id" v-show="isOpen">{{ li }}</li>
+        </ul>
     </div>    
 </template>

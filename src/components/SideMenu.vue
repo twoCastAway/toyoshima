@@ -6,25 +6,9 @@ export default {
         SubMenuList
     },
     props: {
-        subMenuID: {
-            type: Number,
-            default: null,
-            validator: function(value){
-                if(value < 8){
-                    return
-                } else{
-                    console.log('error')
-                }
-            },
-            requried: true
-        },
-        // isOpen: {
-        //     type: Boolean,
-        //     default: false
-        // }
     },
     data(){
-        return{
+        return{        
             sideMenuList: [
                     '防災・安全',
                     '手続き・届出',
@@ -37,18 +21,29 @@ export default {
             ],
         }        
     },
+    methods: {
+        openSubM: function(){
+            
+            console.log('open')
+        },
+        closeSubM: function(){
+            console.log('close')
+        }
+    }
 }
 </script>
 <template>
     <div id="SideMenu">
         <ul>
-            <li v-for="(li, id) in sideMenuList" :key="id" v-on:mouseover="openSubM, isOpen" >{{ li }}</li>
+            <li v-for="(li, id) in sideMenuList" :key="id" v-on:mouseenter="openSubM" v-on:mouseleave="closeSubM">
+                {{ li }}
+                <SubMenuList :id="id" />
+            </li>
         </ul>
     </div>
-    <SubMenuList />
 </template>
 <style scoped>
-#SideMenu > ul > li {
+#SideMenu > ul > li, #SunMenuList > ul > li {
     list-style-type: none;
 }
 #SideMenu {

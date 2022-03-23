@@ -51,6 +51,6 @@ export default {
     components: { 
         SiteMap ,
         SideMenu
-    }
+    },
 }
 </script>
