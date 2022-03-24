@@ -1,7 +1,8 @@
 <template>
-    <div id=""> 
-        <img src="" alt="">
-        <p></p>
+    <!-- <a href="" v-on:click="Click"></a> -->
+    <div :id="iconID">
+        <img :src="src" :alt="alt">
+        <p>{{ iconName }}</p>
     </div>
 </template>
 
@@ -11,6 +12,18 @@
 
 <script>
 export default {
-    
+    name: 'MenuIcon1',
+    data() {
+        return {
+            iconID: '',
+            iconName: '',
+            href: '',
+            src: '',
+            alt: '',
+        }
+    },
+    methods: {
+        
+    },
 }
 </script>

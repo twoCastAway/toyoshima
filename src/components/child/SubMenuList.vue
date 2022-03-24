@@ -2,11 +2,11 @@
 export default {
     name: 'SubMenuList',
     props: {
-        id: { type: Number },   
-        isOpen: {
-            type: Boolean,
-            default: false
-        }
+        ID: { type: Number },   
+        // isOpen: {
+        //     type: Boolean,
+        //     default: false
+        // }
     },    
     data(){
         return {
@@ -27,7 +27,7 @@ export default {
 <template>
     <div id="SubMenuList">
         <ul>
-            <li v-for="(li, id) in subMenuList[id]" :key="id" v-show="isOpen">{{ li }}</li>
+            <li v-for="(li, id) in subMenuList[id]" :key="id" >{{ li }}</li>
         </ul>
     </div>    
 </template>
